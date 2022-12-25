@@ -1,7 +1,7 @@
 #
 # spec file for package ocamlfuse
 #
-# Copyright (c) 2016 Sérgio Basto.
+# Copyright (c) 2016-2022 Sérgio M. Basto.
 # Copyright (c) 2015 SUSE LINUX GmbH, Nuernberg, Germany.
 # Copyright (c) 2015 LISA GmbH, Bingen, Germany.
 #
@@ -16,12 +16,12 @@
 
 Name:           ocamlfuse
 Version:        2.7.1_cvs7
-Release:        1%{?dist}
+Release:        3.20220109%{?dist}
 Summary:        Ocaml FUSE binding
 License:        GPLv2
 Url:            https://github.com/astrada/ocamlfuse/
 Source:         https://github.com/astrada/ocamlfuse/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch1:         v2.7.1_cvs7...08f90ac.diff
+Patch1:         v2.7.1_cvs7...4cff750.diff
 
 BuildRequires:  fuse-devel
 BuildRequires:  ocaml
@@ -50,19 +50,25 @@ do zero-copy in ocaml land.
 dune build @install
 
 %install
-dune install --prefix=%{buildroot}/usr \
-    --libdir=%{buildroot}%{_libdir}/ocaml
-
-#only remove README.md and LICENSE
-rm -r %{buildroot}/usr/doc/%{name}
+dune install --destdir=%{buildroot} --prefix=/usr \
+    --libdir=%{_libdir}/ocaml --docdir=%{_docdir}
 
 %files
-%doc README.md
-%license LICENSE
+%doc %{_docdir}/ocamlfuse/README.md
+%doc %{_docdir}/conf-libfuse/README.md
+%license %{_docdir}/ocamlfuse/LICENSE
+%license %{_docdir}/conf-libfuse/LICENSE
+%{_libdir}/ocaml/conf-libfuse/
 %{_libdir}/ocaml/ocamlfuse/
-%{_libdir}/ocaml/stublibs/*
+%{_libdir}/ocaml/stublibs/
 
 %changelog
+* Mon Dec 26 2022 Sérgio Basto <sergio@serjux.com> - 2.7.1_cvs7-3.20220109
+- use --destdir=%%{buildroot}
+
+* Sun Dec 25 2022 Sérgio Basto <sergio@serjux.com> - 2.7.1_cvs7-2.20220109
+- Update to commits on Jan 9, 2022
+
 * Thu Sep 09 2021 Sérgio Basto <sergio@serjux.com> - 2.7.1_cvs7-1
 - New package versioning for ocamlfuse-2.7.1_cvs7
 - Add the last 4 patches from git master

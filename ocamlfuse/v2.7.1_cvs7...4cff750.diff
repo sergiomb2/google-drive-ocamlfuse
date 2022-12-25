@@ -1,3 +1,33 @@
+diff --git a/conf-libfuse.opam b/conf-libfuse.opam
+new file mode 100644
+index 0000000..77c0790
+--- /dev/null
++++ b/conf-libfuse.opam
+@@ -0,0 +1,24 @@
++opam-version: "2.0"
++maintainer: "https://github.com/ocaml/opam-repository/issues"
++homepage: "https://github.com/libfuse/libfuse"
++bug-reports: "https://github.com/ocaml/opam-repository/issues"
++authors: "Multiple"
++license: "LGPL-2.1-only"
++build: ["pkg-config" "--exists" "fuse"]
++depends: [
++  "conf-pkg-config" {build}
++]
++depexts: [
++  ["libfuse-dev"] {os-family = "debian"}
++  ["fuse-dev"] {os-distribution = "alpine"}
++  ["fuse-devel"] {os-distribution = "centos"}
++  ["fuse-devel"] {os-distribution = "fedora"}
++  ["fuse-devel"] {os-distribution = "ol"}
++  ["fuse-devel"] {os-family = "suse"}
++  ["fuse2"] {os-family = "arch"}
++  ["macfuse"] {os = "macos" & os-distribution = "homebrew"}
++]
++synopsis: "Virtual package relying on FUSE"
++description:
++  "This package can only install if the fuse library is installed on the system."
++flags: conf
 diff --git a/lib/Fuse_util.c b/lib/Fuse_util.c
 index 02d2429..1c1d1eb 100644
 --- a/lib/Fuse_util.c
@@ -68,15 +98,27 @@ index 2aa851a..5c01587 100644
  #include <string.h>
  #include <errno.h>
 diff --git a/ocamlfuse.opam b/ocamlfuse.opam
-index c2a91bf..2d92bab 100644
+index c2a91bf..8fcc711 100644
 --- a/ocamlfuse.opam
 +++ b/ocamlfuse.opam
-@@ -14,7 +14,7 @@ depends: [
+@@ -14,17 +14,11 @@ depends: [
    "base-threads"
    "base-unix"
    "camlidl"
 -  "dune"
 +  "dune" {>= "1.6"}
    "dune-configurator"
++  "conf-libfuse"
  ]
- depexts: [
+-depexts: [
+-  ["libfuse-dev"] {os-family = "debian"}
+-  ["fuse-dev"] {os-distribution = "alpine"}
+-  ["fuse-devel"] {os-distribution = "centos"}
+-  ["fuse-devel"] {os-distribution = "fedora"}
+-  ["fuse-devel"] {os-family = "suse"}
+-  ["Caskroom/cask/osxfuse"] {os = "macos" & os-distribution = "homebrew"}
+-]
++x-ci-accept-failures: ["oraclelinux-7"]
+ synopsis: "OCaml bindings for FUSE (Filesystem in UserSpacE)"
+ description: """
+ This is a binding to FUSE for the OCaml programming language, enabling
