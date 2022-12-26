@@ -1,7 +1,7 @@
 #
 # spec file for package gapi-ocaml
 #
-# Copyright (c) 2016 Sérgio Basto.
+# Copyright (c) 2016-2022 Sérgio M. Basto.
 # Copyright (c) 2015 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # Copyright (c) 2015 LISA GmbH, Bingen, Germany.
 #
@@ -21,7 +21,7 @@
 
 Name:           gapi-ocaml
 Version:        0.4.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A simple OCaml client for Google Services
 License:        MIT
 
@@ -101,15 +101,14 @@ developing applications that use %{name}.
 dune build @install
 
 %install
-dune install --prefix=%{buildroot}/usr --libdir=%{buildroot}%{_libdir}/ocaml
+dune install --prefix=%{buildroot}/usr --libdir=%{buildroot}%{_libdir}/ocaml --docdir=%{buildroot}%{_docdir}
 
-#only remove README.md and LICENSE
-rm -r %{buildroot}/usr/doc/%{name}
+rm %{buildroot}%{_libdir}/ocaml/gapi-ocaml/dune-package
 
 
 %files
-%doc README.md
-%license LICENSE
+%doc %{_docdir}/gapi-ocaml/README.md
+%license %{_docdir}/gapi-ocaml/LICENSE
 %{_libdir}/ocaml/gapi-ocaml
 %if %{opt}
 %exclude %{_libdir}/ocaml/gapi-ocaml/*.a
@@ -127,6 +126,10 @@ rm -r %{buildroot}/usr/doc/%{name}
 %{_libdir}/ocaml/gapi-ocaml/*.mli
 
 %changelog
+* Mon Dec 26 2022 Sérgio Basto <sergio@serjux.com> - 0.4.2-2
+- fix /builddir/build/BUILDROOT/gapi-ocaml-0.4.2-1.fc37.x86_64/usr/lib64/ocaml/gapi-ocaml/dune-package
+Found '/builddir/build/BUILDROOT/gapi-ocaml-0.4.2-1.fc37.x86_64' in installed files; aborting
+
 * Wed Nov 03 2021 Sérgio Basto <sergio@serjux.com> - 0.4.2-1
 - Update gapi-ocaml to 0.4.2
 
