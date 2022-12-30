@@ -21,7 +21,7 @@
 
 Name:           gapi-ocaml
 Version:        0.4.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A simple OCaml client for Google Services
 License:        MIT
 
@@ -101,9 +101,9 @@ developing applications that use %{name}.
 dune build @install
 
 %install
-dune install --prefix=%{buildroot}/usr --libdir=%{buildroot}%{_libdir}/ocaml --docdir=%{buildroot}%{_docdir}
+dune install --destdir=%{buildroot} --prefix=/usr \
+    --libdir=%{_libdir}/ocaml --docdir=%{_docdir}
 
-rm %{buildroot}%{_libdir}/ocaml/gapi-ocaml/dune-package
 
 
 %files
@@ -126,6 +126,9 @@ rm %{buildroot}%{_libdir}/ocaml/gapi-ocaml/dune-package
 %{_libdir}/ocaml/gapi-ocaml/*.mli
 
 %changelog
+* Thu Dec 29 2022 Sérgio Basto <sergio@serjux.com> - 0.4.2-3
+- use prefix
+
 * Mon Dec 26 2022 Sérgio Basto <sergio@serjux.com> - 0.4.2-2
 - fix /builddir/build/BUILDROOT/gapi-ocaml-0.4.2-1.fc37.x86_64/usr/lib64/ocaml/gapi-ocaml/dune-package
 Found '/builddir/build/BUILDROOT/gapi-ocaml-0.4.2-1.fc37.x86_64' in installed files; aborting
