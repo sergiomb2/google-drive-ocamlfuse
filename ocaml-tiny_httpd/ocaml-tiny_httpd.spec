@@ -17,17 +17,19 @@
 
 
 Name:           ocaml-tiny_httpd
-Version:        0.11
+Version:        0.12
 Release:        1%{?dist}
 %{?ocaml_preserve_bytecode}
 Summary:        Minimal HTTP server using good old threads
 License:        MIT
 Group:          Development/Languages/OCaml
 URL:            https://opam.ocaml.org/packages/tiny_httpd
-Source0:        %{name}-%{version}.tar.xz
+Source0:        https://github.com/c-cube/tiny_httpd/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:  ocaml
 BuildRequires:  ocaml-dune >= 2.0
 BuildRequires:  ocaml-zip
+BuildRequires:  ocaml-result-devel
+BuildRequires:  ocaml-seq-devel
 
 %description
 Minimal HTTP server using good old threads.
@@ -42,24 +44,17 @@ The %{name}-devel package contains libraries and signature files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n tiny_httpd-%{version}
 
 %build
-dune build @install
+%dune_build
 
 %install
-dune install --destdir=%{buildroot} --prefix=/usr \
-    --libdir=%{_libdir}/ocaml --docdir=%{_docdir}
+%dune_install
 
 
 %files
 %{_bindir}/*
-%doc %{_docdir}/tiny_httpd_camlzip/README.md
-%doc %{_docdir}/tiny_httpd_camlzip/CHANGES.md
-%doc %{_docdir}/tiny_httpd/README.md
-%doc %{_docdir}/tiny_httpd/CHANGES.md
-#%%license %%{_docdir}/tiny_httpd_camlzip/LICENSE
-#%%license %%{_docdir}/conf-libfuse/LICENSE
 %{_libdir}/ocaml/tiny_httpd/
 %{_libdir}/ocaml/tiny_httpd_camlzip/
 %exclude %{_libdir}/ocaml/tiny_httpd/*.a
@@ -83,3 +78,6 @@ dune install --destdir=%{buildroot} --prefix=/usr \
 %{_libdir}/ocaml/tiny_httpd_camlzip/*.mli
 
 %changelog
+* Sun Jan 08 2023 Sérgio Basto <sergio@serjux.com> - 0.12-1
+- Update to 0.12
+
