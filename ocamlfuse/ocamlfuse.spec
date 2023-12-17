@@ -15,13 +15,12 @@
 # published by the Open Source Initiative.
 
 Name:           ocamlfuse
-Version:        2.7.1_cvs7
-Release:        3.20220109%{?dist}
+Version:        2.7.1_cvs8
+Release:        1.20230427%{?dist}
 Summary:        Ocaml FUSE binding
 License:        GPLv2
 Url:            https://github.com/astrada/ocamlfuse/
 Source:         https://github.com/astrada/ocamlfuse/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch1:         v2.7.1_cvs7...4cff750.diff
 
 BuildRequires:  fuse-devel
 BuildRequires:  ocaml

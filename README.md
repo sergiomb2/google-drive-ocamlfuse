@@ -1,5 +1,6 @@
 # google-drive-ocamlfuse
 Packaging google-drive-ocamlfuse
+Builds available here: https://copr.fedorainfracloud.org/coprs/sergiomb/google-drive-ocamlfuse/
 
 1 - Prepare ocamlfuse
 ```
@@ -10,6 +11,8 @@ Packaging google-drive-ocamlfuse
    mock -r fedora-23-x86_64 --no-clean --rebuild ./ocamlfuse-2.7.1-1.cv2.fc23.src.rpm
    or
    copr-cli build sergiomb/google-drive-ocamlfuse ./ocamlfuse-2.7.1-2.cvs4.fc23.src.rpm
+   or
+   fedpkg --release rawhide copr-build sergiomb/google-drive-ocamlfuse
    cd ..
 ```
 
