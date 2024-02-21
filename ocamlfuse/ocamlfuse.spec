@@ -15,8 +15,8 @@
 # published by the Open Source Initiative.
 
 Name:           ocamlfuse
-Version:        2.7.1_cvs8
-Release:        1.20230427%{?dist}
+Version:        2.7.1_cvs9
+Release:        1%{?dist}
 Summary:        Ocaml FUSE binding
 License:        GPLv2
 Url:            https://github.com/astrada/ocamlfuse/
@@ -25,11 +25,11 @@ Source:         https://github.com/astrada/ocamlfuse/archive/v%{version}/%{name}
 BuildRequires:  fuse-devel
 BuildRequires:  ocaml
 BuildRequires:  ocaml-runtime
-BuildRequires:  ocaml-camlidl
 BuildRequires:  ocaml-camlidl-devel
 BuildRequires:  ocaml-findlib
 BuildRequires:  ocaml-ocamldoc
 BuildRequires:  ocaml-dune-devel
+BuildRequires:  ocaml-bigarray-compat-devel
 
 %description
 This is a binding to fuse for the ocaml programming language, enabling
@@ -62,6 +62,9 @@ dune install --destdir=%{buildroot} --prefix=/usr \
 %{_libdir}/ocaml/stublibs/
 
 %changelog
+* Wed Feb 21 2024 Sérgio Basto <sergio@serjux.com> - 2.7.1_cvs9-1
+- Update ocamlfuse to 2.7.1_cvs9
+
 * Mon Dec 26 2022 Sérgio Basto <sergio@serjux.com> - 2.7.1_cvs7-3.20220109
 - use --destdir=%%{buildroot}
 
