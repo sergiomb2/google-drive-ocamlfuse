@@ -20,8 +20,8 @@
 %global debug_package %{nil}
 
 Name:           gapi-ocaml
-Version:        0.4.2
-Release:        3%{?dist}
+Version:        0.4.5
+Release:        1%{?dist}
 Summary:        A simple OCaml client for Google Services
 License:        MIT
 
@@ -41,6 +41,9 @@ BuildRequires:  ocaml-ounit-devel >= 1.1.0
 BuildRequires:  ocaml-curl-devel
 BuildRequires:  ocaml-zarith
 BuildRequires:  ocaml-dune-devel
+BuildRequires:  ocaml-yojson-devel
+BuildRequires:  ocaml-cppo
+BuildRequires:  ocaml-camlp-streams-devel
 BuildRequires:  zlib-devel
 
 # ocaml autodep start for pkg: gapi-ocaml
@@ -110,6 +113,7 @@ dune install --destdir=%{buildroot} --prefix=/usr \
 %doc %{_docdir}/gapi-ocaml/README.md
 %license %{_docdir}/gapi-ocaml/LICENSE
 %{_libdir}/ocaml/gapi-ocaml
+%{_libdir}/ocaml/stublibs/dllnetsys_local_stubs.so
 %if %{opt}
 %exclude %{_libdir}/ocaml/gapi-ocaml/*.a
 %exclude %{_libdir}/ocaml/gapi-ocaml/*.cmx
@@ -126,6 +130,12 @@ dune install --destdir=%{buildroot} --prefix=/usr \
 %{_libdir}/ocaml/gapi-ocaml/*.mli
 
 %changelog
+* Wed Feb 21 2024 Sérgio Basto <sergio@serjux.com> - 0.4.5-1
+- Update gapi-ocaml to 0.4.5
+
+* Sun Dec 17 2023 Sérgio Basto <sergio@serjux.com> - 0.4.4-1
+- Update gapi-ocaml to 0.4.4
+
 * Thu Dec 29 2022 Sérgio Basto <sergio@serjux.com> - 0.4.2-3
 - use prefix
 
