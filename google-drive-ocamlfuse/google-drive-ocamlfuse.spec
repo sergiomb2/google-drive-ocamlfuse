@@ -18,7 +18,7 @@
 #
 
 Name:       google-drive-ocamlfuse
-Version:    0.7.30
+Version:    0.7.31
 Release:    1%{?dist}
 License:    BSD-2-Clause
 Summary:    FUSE filesystem for Google Drive
@@ -44,6 +44,7 @@ BuildRequires:  curl-devel
 BuildRequires:  zlib-devel
 BuildRequires:  fuse-devel
 BuildRequires:  ocaml-dune
+BuildRequires:  ocaml-seq-devel
 
 
 %description
@@ -80,6 +81,9 @@ dune install --destdir=%{buildroot} --prefix=/usr --libdir=%{_libdir}/ocaml --do
 
 
 %changelog
+* Thu Feb 22 2024 Sérgio Basto <sergio@serjux.com> - 0.7.31-1
+- Update google-drive-ocamlfuse to 0.7.31
+
 * Fri Dec 30 2022 Sérgio Basto <sergio@serjux.com> - 0.7.30-1
 - message
 
