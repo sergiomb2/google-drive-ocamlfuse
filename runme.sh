@@ -45,6 +45,7 @@ echo Press enter to continue to tiny_httpd; read dummy;
 cd ocaml-tiny_httpd/
 rpmdev-bumpspec -n $tiny_httpd_ver -c "Update ocaml-tiny_httpd to $tiny_httpd_ver" $(basename $(pwd)).spec
 spectool -g $(basename $(pwd)).spec
+fedpkg new-sources $(spectool -l --sources $(basename $(pwd)).spec | grep / | sed 's/.*\///') --offline
 fedpkg copr-build sergiomb/google-drive-ocamlfuse
 cd ..
 fi

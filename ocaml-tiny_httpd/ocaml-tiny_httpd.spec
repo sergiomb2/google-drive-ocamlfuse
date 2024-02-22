@@ -17,7 +17,7 @@
 
 
 Name:           ocaml-tiny_httpd
-Version:        0.12
+Version:        0.16
 Release:        1%{?dist}
 %{?ocaml_preserve_bytecode}
 Summary:        Minimal HTTP server using good old threads
@@ -78,6 +78,9 @@ developing applications that use %{name}.
 %{_libdir}/ocaml/tiny_httpd_camlzip/*.mli
 
 %changelog
+* Wed Feb 21 2024 Sérgio Basto <sergio@serjux.com> - 0.16-1
+- Update ocaml-tiny_httpd to 0.16
+
 * Sun Jan 08 2023 Sérgio Basto <sergio@serjux.com> - 0.12-1
 - Update to 0.12
 
